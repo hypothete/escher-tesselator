@@ -4,17 +4,55 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>Escher Tesselator</title>
-  <style media="screen">
-    body {
-      background-color: #333;
-      color: #eee;
-    }
-  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
+<style id="jsbin-css">
+body {
+  margin: 0;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  font-family: sans-serif;
+}
+
+#mousemask {
+  background-repeat:repeat;
+  width: 100vw;
+  height: 100vh;
+}
+
+#controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  background-color: rgba(32,32,32,0.8);
+  color: #ccc;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+</style>
 </head>
 <body>
-<canvas width="400" height="400"></canvas>
-<script src="app.js">
+  <div id="app" >
+    <div id="mousemask" @mousemove="mouseHandler" :style="{backgroundImage: 'url('+bgURL+')'}">
+      <canvas id="canvas" width="256" height="256"></canvas>
+    </div>
 
+    <div id="controls">
+      <input type="color" v-model="colors[0]">
+      <input type="color" v-model="colors[1]">
+      <button @click="swapColor">♻ swap colors</button>
+      <input id="brush" type="range" min="1" max="10" v-model="brushSize">
+      <label for="brush">brush size</label>
+      <svg width="20" height="20">
+        <circle cx="10" cy="10" :fill="colors[0]" :r="brushSize"></circle>
+      </svg>
+    </div>
+  </div>
+
+<script src="app.js">
 </script>
 </body>
 </html>
