@@ -8,13 +8,17 @@ var app = new Vue({
   created: function () {
     this.drawCheckerboard();
     this.updateBG();
+    setTimeout(() => {
+      this.showTitle = false;
+    }, 3000)
   },
   data: function () {
     return {
       colors: ['#ff0000', '#cccccc'],
       tileSize: can.width/2,
       brushSize: 5,
-      bgURL:''
+      bgURL:'',
+      showTitle: true
     };
   },
   methods: {

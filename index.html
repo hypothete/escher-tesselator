@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>Escher Tesselator</title>
+  <title>Tesselator</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
 <style id="jsbin-css">
 body {
@@ -12,6 +12,7 @@ body {
   width: 100vw;
   height: 100vh;
   font-family: sans-serif;
+  position: relative;
 }
 
 #mousemask {
@@ -32,10 +33,27 @@ body {
   align-items: center;
   justify-content: space-between;
 }
+
+.title {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  font-family: sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 </style>
 </head>
 <body>
   <div id="app" >
+    <div class="title" v-show="showTitle">
+      <div>
+        <i><h1>Tesselator v 0.1</h1></i>
+      </div>
+    </div>
+
     <div id="mousemask" @mousemove="mouseHandler" :style="{backgroundImage: 'url('+bgURL+')'}">
       <canvas id="canvas" width="256" height="256"></canvas>
     </div>
@@ -49,6 +67,7 @@ body {
       <svg width="20" height="20">
         <circle cx="10" cy="10" :fill="colors[0]" :r="brushSize"></circle>
       </svg>
+      <a :href="bgURL" download="tesselation.png"><button>download</button></a>
     </div>
   </div>
 
